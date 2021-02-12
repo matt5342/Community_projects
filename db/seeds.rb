@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+UserProject.destroy_all
+UserCommunity.destroy_all
+ProjectCommunity.destroy_all
 Project.destroy_all
 User.destroy_all
 Community.destroy_all
@@ -24,11 +27,36 @@ end
     )
 end
 10.times do 
-
     current_project = Project.create(
         name: Faker::Verb.base,
         description: Faker::Marketing.buzzwords,
         status: "Started",
+        goal: rand(3..5),
+        user_id: User.all[rand(19)].id
+    )
+end
+20.times do
+    project = Project.all[rand(9)]
+    project.status = "In Progress"
+    project.save
+    UserProject.create(
+        user_id: User.all[rand(19)].id, 
+        project_id: project.id,
+    )
+    if project.users.count >= project.goal
+        project.status = "Complete"   
+        project.save
+    end
+end
+5.times do
+    ProjectCommunity.create(
+        community_id: Community.all[rand(9)].id, 
+        project_id: Project.all[rand(9)].id
+    )
+end
+5.times do
+    UserCommunity.create(
+        community_id: Community.all[rand(9)].id, 
         user_id: User.all[rand(19)].id
     )
 end
