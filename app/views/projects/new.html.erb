@@ -1,0 +1,14 @@
+<%= form_for @project do |f| %>
+    Project name: <%= f.text_field :name %><br>
+    Description: <%= f.text_field :description %><br>
+    Goal: <%= f.number_field :goal %><br>
+    Creator: <%= f.collection_select :user_id, User.all, :id, :user_name %><br>
+    <br>
+        <% if flash[:my_errors] %>
+            <% flash[:my_errors].each do |error| %>
+                <p style="color:red"><%=error%></p>
+            <%end%>
+        <%end%>
+    <%= f.submit %>
+    <%end%>
+

@@ -1,0 +1,11 @@
+<h1> All Communities </h1>
+
+<ul>
+    <% @communities.each do |com| %>
+        <li>
+        <%= link_to com.name, com %>
+        </li>
+    <% end %>
+</ul>
+
+<%= button_tag link_to "Create a New Community", new_community_path %>

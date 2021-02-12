@@ -1,0 +1,12 @@
+
+    <h1><%= @project.name %></h1>
+    <p><%= @project.description %></p>
+
+    Status: <%= @project.status %><br><br>
+    
+    Communities:
+    <ul>
+    <% @project.communities.each do |community| %>
+        <li><%= community.name %></li>
+    <% end %>
+    </ul>

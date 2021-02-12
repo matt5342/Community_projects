@@ -1,0 +1,16 @@
+<h2> Create a New Community </h2>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |err| %>
+    <div><%= err %><div><br>
+    <% end %>
+    <br>
+<% end %>
+
+<%= form_with model: @community do |form| %>
+    <%= form.label :name %>
+    <br>
+    <%= form.text_field :name %>
+    <br> <br>
+    <%= form.submit %>
+<% end %>

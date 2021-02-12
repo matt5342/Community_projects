@@ -1,22 +1,6 @@
 # README
 
-User
-	-show page
-        -shows projects created
-        -shows communities a part of
-        -shows projects participating in 
-	-create page (is the home page/login page) (username/pw later)  
-        -find or create user
-    -logout button -> home page
-	
-Community
-	-show page
-		-all projects
-		-all members
-	-index 
-	-create
-	-edit (only for user who created)
-Project
+1) Project
 	-show
 	-index
 	-index by community
@@ -25,6 +9,24 @@ Project
 	-edit (only for user who created)
 	-destroy (only for user who created)
 	-increment progress
+2) Community
+	-show page
+		-all projects
+		-all members
+	-index 
+	-create
+	-edit (only for user who created)
+3) User
+	-show page
+        -shows projects created
+        -shows communities a part of
+        -shows projects participating in 
+	-create page (is the home page/login page) (username/pw later)  
+        -find or create user
+    -logout button -> home page
+	
+
+
 
 
 

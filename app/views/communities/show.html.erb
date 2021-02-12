@@ -1,0 +1,16 @@
+<h2><%=@community.name %> </h2>
+
+<dl>
+    <dt>All Projects</dt>
+    <ul>
+        <dd>
+            <% @community.projects.each do |project| %>
+            <li>
+                <%= link_to project.name, project %>
+            </li>
+            <% end %>
+        </dd>
+    </ul>
+</dl>
+
+<%= button_tag link_to "Create a New Project", new_project_path %>
