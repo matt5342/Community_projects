@@ -3,13 +3,21 @@
 <dl>
     <dt>All Projects</dt>
     <ul>
-        <dd>
-            <% @community.projects.each do |project| %>
-            <li>
-                <%= link_to project.name, project %>
-            </li>
-            <% end %>
-        </dd>
+        <% @community.projects.each do |project| %>
+        <li>
+            <%= link_to project.name, project %>
+        </li>
+        <% end %>
+    </ul>
+</dl>
+<dl>
+    <dt>All Users</dt>
+    <ul>
+        <% @community.users.each do |user| %>
+        <li>
+            <%= link_to user.user_name, user %>
+        </li>
+        <% end %>
     </ul>
 </dl>
 

@@ -1,26 +1,26 @@
 # README
 
 1) Project
-	-show
-	-index
-	-index by community
-	-index by completed/in progress
-	-create
+	X-show
+	X-index
+	X-index by community
+	X-index by completed/in progress
+	X-create
 	-edit (only for user who created)
 	-destroy (only for user who created)
 	-increment progress
 2) Community
-	-show page
-		-all projects
-		-all members
-	-index 
-	-create
+	X-show page
+	X	-all projects
+	X	-all members
+	X-index 
+	X-create
 	-edit (only for user who created)
 3) User
-	-show page
-        -shows projects created
-        -shows communities a part of
-        -shows projects participating in 
+	X-show page
+    X    -shows projects created
+    X    -shows communities a part of
+    X    -shows projects participating in 
 	-create page (is the home page/login page) (username/pw later)  
         -find or create user
     -logout button -> home page

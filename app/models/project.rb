@@ -8,5 +8,5 @@ class Project < ApplicationRecord
   validates :name, uniqueness: {message: "has already been created!"}
   validates :description, length: {minimum: 5, message: "must be longer than 5 characters!"}
   validates :goal, inclusion: {in: 3..5, message: "must be 3 to 5!"}
-  
+
 end

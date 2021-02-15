@@ -1,0 +1,8 @@
+<h1>Contribute to a New Project!</h1>    
+
+<%= form_for @user_project do |f| %>
+    <%= f.text_field :user_id %>
+    Communities: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name %><br>
+    <%= f.submit "Back Project" %>
+    
+<% end %>

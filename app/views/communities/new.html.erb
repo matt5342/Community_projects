@@ -2,9 +2,8 @@
 
 <% if flash[:errors] %>
     <% flash[:errors].each do |err| %>
-    <div><%= err %><div><br>
+    <div style="color:red"><%= err %></div><br>
     <% end %>
-    <br>
 <% end %>
 
 <%= form_with model: @community do |form| %>

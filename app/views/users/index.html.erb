@@ -1,0 +1,9 @@
+<h1> All Users </h1>
+
+<ul>
+    <% @users.each do |p| %>
+    <li> <%= link_to p.user_name, p %></li>
+    <% end %>
+</ul>
+
+<!-- <%= button_tag link_to "Create a New User", new_project_path %> -->

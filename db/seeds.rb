@@ -38,17 +38,10 @@ end
 end
 20.times do
     project = Project.all[rand(9)]
-
-    project.status = "In Progress"
-    project.save
     UserProject.create(
         user_id: User.all[rand(19)].id, 
         project_id: project.id,
     )
-    if project.users.count >= project.goal
-        project.status = "Complete"   
-        project.save
-    end
 end
 10.times do
     ProjectCommunity.create(
