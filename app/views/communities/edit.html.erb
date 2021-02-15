@@ -1,0 +1,16 @@
+<h2>  Edit Community </h2>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |err| %>
+    <div style="color:red"><%= err %></div><br>
+    <% end %>
+<% end %>
+
+<%= form_with model: @community do |form| %>
+    <%= form.label :name %>
+    <br>
+    <%= form.text_field :name %><br>
+    Projects: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name %><br>
+    <br> <br>
+    <%= form.submit %>
+<% end %>

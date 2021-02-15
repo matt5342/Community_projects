@@ -6,9 +6,9 @@
 	X-index by community
 	X-index by completed/in progress
 	X-create
-	-edit (only for user who created)
-	-destroy (only for user who created)
-	-increment progress
+	X-edit (only for user who created)
+	X-destroy (only for user who created)
+	X-increment progress
 2) Community
 	X-show page
 	X	-all projects
