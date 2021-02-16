@@ -2,6 +2,8 @@ class UsersController < ApplicationController
     before_action :get_user, only: [:show]
     after_action :new_back_project, only: [:back_project]
 
+    def welcome
+    end
     def index
         @users = User.all
     end
