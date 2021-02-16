@@ -1,0 +1,8 @@
+<%= form_for @user do |f| %>
+    User name: <%= f.text_field :user_name %><br>
+    Password: <%= f.password_field :password %><br>
+    Password Confirmation: <%= f.password_field :password_confirmation %><br>
+    <%= render 'communities/errors' %>
+    <%= f.submit "Create Account", :class => "btn-primary btn-sm" %>
+    <%end%>
+

@@ -1,0 +1,15 @@
+
+
+<% if flash %>
+    <% flash.each do |type, message| %>
+       <div style="color:red">
+            <% if message.class == Array %>
+                <% message.each do |m|%>
+                    <%= m %><br>
+                <%end%>
+            <%else%>
+                <%= message %>
+            <%end%>
+       </div><br>
+        <%end%>
+<%end%>
