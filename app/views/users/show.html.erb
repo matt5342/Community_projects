@@ -1,0 +1,42 @@
+<h1> <%= @user.user_name %> </h1>
+
+<dl>
+    <ul>
+    <dt><h3>My Projects</h3></dt>
+    <dd><% @user.projects.each do |project| %>
+        <li>
+            <%=link_to project.name, project %>
+        </li>
+    <% end %>
+    </dd>
+    </ul>
+</dl>
+
+<dl>
+    <ul>
+    <dt><h3>My Communities</h3></dt>
+    <dd><% @user.communities.each do |comm| %>
+        <li>
+            <%=link_to comm.name, comm %>
+        </li>
+        <% end %>
+    </dd>
+    </ul>
+</dl>
+
+<dl>
+    <ul>
+    <dt><h3>Backed Projects</h3></dt>
+    <dd><% @user.backed_projects.each do |project| %>
+        <li>
+            <%=link_to project.name, project %>
+        </li>
+        <% end %>
+    </dd>
+    </ul>
+</dl>
+
+<%= button_tag link_to "Back a Project", new_user_project_path %>
+<%= button_tag link_to "Back to Index", users_path %>
+<%= button_tag link_to "Create a Project", new_project_path %>
+<%= button_tag link_to "Create a Comminuty", new_community_path %>

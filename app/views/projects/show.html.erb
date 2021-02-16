@@ -7,6 +7,10 @@
     Communities:
     <ul>
     <% @project.communities.each do |community| %>
-        <li><%= community.name %></li>
+        <li><%= link_to community.name, community %></li>
     <% end %>
     </ul>
+    <%= button_tag link_to "Create a New Community", new_community_path %>
+    <%= button_tag link_to "My Creator", user_path(@project.user) %>
+    <%= button_tag link_to "Edit Project", edit_project_path(@project) %>
+    <%= button_tag link_to "Delete Project",  @project, method: :delete, data: { confirm: "Are you Sure?" } %>

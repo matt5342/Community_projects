@@ -1,4 +1,4 @@
-<h2> Create a New Community </h2>
+<h2>  Edit Community </h2>
 
 <% if flash[:errors] %>
     <% flash[:errors].each do |err| %>
@@ -9,7 +9,8 @@
 <%= form_with model: @community do |form| %>
     <%= form.label :name %>
     <br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name %><br>
+    Projects: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name %><br>
     <br> <br>
     <%= form.submit %>
 <% end %>

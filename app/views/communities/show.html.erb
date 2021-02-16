@@ -3,14 +3,23 @@
 <dl>
     <dt>All Projects</dt>
     <ul>
-        <dd>
-            <% @community.projects.each do |project| %>
-            <li>
-                <%= link_to project.name, project %>
-            </li>
-            <% end %>
-        </dd>
+        <% @community.projects.each do |project| %>
+        <li>
+            <%= link_to project.name, project %>
+        </li>
+        <% end %>
+    </ul>
+</dl>
+<dl>
+    <dt>All Users</dt>
+    <ul>
+        <% @community.users.each do |user| %>
+        <li>
+            <%= link_to user.user_name, user %>
+        </li>
+        <% end %>
     </ul>
 </dl>
 
 <%= button_tag link_to "Create a New Project", new_project_path %>
+<%= button_tag link_to "Edit Community", edit_community_path(@community) %>
