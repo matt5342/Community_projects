@@ -1,0 +1,23 @@
+<% content_for :content do %>
+    <div class="jumbotron text-center">
+        <h1>Projects</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    <%= yield %>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <p>
+
+                    <div class="caption">Helping the community starts by contributing to projects!</div>
+                    <img src="https://www.europeanbusinessmagazine.com/wp-content/uploads/2017/05/Project-Management-service.jpg" alt="Working on a Project">
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <% end %>
+    <%= render template: "layouts/application" %>

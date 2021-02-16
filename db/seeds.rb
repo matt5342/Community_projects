@@ -16,8 +16,11 @@ Community.destroy_all
 
 
 20.times do 
+    pw = Faker::Internet.password
     User.create(
         user_name: Faker::Internet.username,
+        password: pw,
+        password_confirmation: pw,
         age: rand(5..100)
     )
 end

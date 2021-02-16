@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
     before_action :get_project, only: [:show, :destroy, :edit, :update]
+    before_action :authorize, only: [:index]
     def index
         # byebug
         @status = ["Started", "In Progress", "Completed"]
@@ -7,7 +8,6 @@ class ProjectsController < ApplicationController
             flash[:status] = params[:status]
             @projects = Project.select{|p| p.status == params[:status]}
         else
-            flash[:status] = "All"
             @projects = Project.all
         end
     end
@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
         if @project.valid?
             redirect_to "/projects"
         else
-            flash[:my_errors] = @project.errors.full_messages
+            flash[:errors] = @project.errors.full_messages
             redirect_to "/projects/new"
         end
     end

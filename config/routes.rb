@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
-  root "users#welcome"
+
+
+  get 'home/welcome'
+  root "home#welcome"
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'back/:id', to: 'users#back_project', as: 'back_this_project'
   resources :projects
   resources :communities
   resources :users
+  resources :sessions
   resources :user_projects, only: [:new, :index, :create]
 
 

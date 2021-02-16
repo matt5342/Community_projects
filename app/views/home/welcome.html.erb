@@ -1,0 +1,14 @@
+<h1> Welcome! </h1>
+
+<div> This is a space where users can help the community by creating and joining projects!</div>
+
+<div> We're glad to see you! </div>
+<br>
+<% if current_user %>
+    <%= current_user.user_name %>
+    <%= link_to "Log Out", new_session_path("current"), method: "delete" %>
+<% else %>
+    <%= link_to 'Sign up', new_user_path, :class => "btn-primary btn-sm" %>
+    <%= link_to 'Log in', new_session_path, :class => "btn-primary btn-sm" %>
+<% end %>
+

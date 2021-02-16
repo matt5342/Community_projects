@@ -1,9 +1,15 @@
+
 <h1>Contribute to a New Project!</h1>    
 
 <%= form_for @user_project do |f| %>
     <%= f.hidden_field :user_id %>
-    Communities: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name %><br>
-    
+    Projects: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name, check: Project.all.map(&:id) do |b| %><br>
+                            <span>
+                                <%= b.check_box %>
+                                <%= b.label %>
+                            </span>
+                    <%end%><br>
+
     <%= f.submit "Back Project" %>
     
 <% end %>

@@ -1,10 +1,6 @@
 <h2>  Edit Community </h2>
 
-<% if flash[:errors] %>
-    <% flash[:errors].each do |err| %>
-    <div style="color:red"><%= err %></div><br>
-    <% end %>
-<% end %>
+<%= render 'communities/errors' %>
 
 <%= form_with model: @community do |form| %>
     <%= form.label :name %>
