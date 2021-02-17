@@ -7,5 +7,7 @@
     <br>
     <%= form.text_field :name %>
     <br> <br>
-    <%= form.submit %>
+    Projects: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name, :item_wrapper_class => 'checkbox_container' %><br>
+    <br> <br>
+    <%= form.submit "Create Community", :class => "btn-primary btn-sm" %>
 <% end %>

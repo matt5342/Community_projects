@@ -1,9 +1,16 @@
+
 <%= form_for @project do |f| %>
     Project name: <%= f.text_field :name %><br>
     Description: <%= f.text_field :description %><br>
     Goal: <%= f.number_field :goal %><br>
-    Creator: <%= f.collection_select :user_id, User.all, :id, :user_name %><br>
-    Communities: <%= collection_check_boxes :community, :community_id, Community.all, :id, :name %><br>
+
+    Creator: <%= f.hidden_field :user_id, :value => current_user.id %><br>
+    Communities: <%= collection_check_boxes :community, :community_id, Community.all, :id, :name, check: Community.all.map(&:id) do |b| %><br>
+                            <span>
+                                <%= b.check_box %>
+                                <%= b.label %>
+                            </span>
+                    <%end%><br>
     <%= f.hidden_field :status, :value => "Started" %>
     <br>
     <%= render 'communities/errors' %>

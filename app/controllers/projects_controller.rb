@@ -7,22 +7,40 @@ class ProjectsController < ApplicationController
         if @status.include?(params[:status])
             flash[:status] = params[:status]
             @projects = Project.select{|p| p.status == params[:status]}
+            if @projects.size == 0
+                @message = "No projects #{params[:status]} yet, back some projects!"
+            end
         else
+            flash[:status] = "All"
             @projects = Project.all
         end
+
     end
     def show
+        flash[:status] = nil
+        flash[:user] = nil
     end
     def edit
-        render :new
+        flash[:status] = nil
+        if current_user.id != @project.user_id
+            redirect_to project_path(@project), alert: "Only the creator can edit this project" 
+        else
+            render :new
+        end
     end
     def update
-        ProjectCommunity.where("project_id=?", @project.id).destroy_all
-        @project.update(project_params)
-        make_project(@project)
+        if current_user.id != @project.user_id
+            redirect_to project_path(@project), alert: "Only the creator can edit this project" 
+        else
+            ProjectCommunity.where("project_id=?", @project.id).destroy_all
+            @project.update(project_params)
+            make_project(@project)
+        end
     end
 
     def new
+        flash[:status] = nil
+        flash[:user] = nil
         @project = Project.new(user_id: flash[:user])
     end
     def create
@@ -31,8 +49,12 @@ class ProjectsController < ApplicationController
         make_project(@project)
     end
     def destroy
-        @project.destroy
-        redirect_to projects_path
+        if current_user.id != @project.user_id
+            redirect_to project_path(@project), alert: "Only the creator can delete this project" 
+        else
+            @project.destroy
+            redirect_to projects_path
+        end
     end
 
 
@@ -41,7 +63,7 @@ class ProjectsController < ApplicationController
 
     private
 
-        def make_project(project)
+    def make_project(project)
         community_params["community_id"].each do |id|
             unless id == ""
                 ProjectCommunity.create(community_id: id, project_id: @project.id)

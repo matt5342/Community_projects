@@ -1,0 +1,15 @@
+
+<h1>Join a new Community!</h1>    
+
+<%= form_with model: @user do |f| %>
+    Communities: <%= f.collection_check_boxes(:community_ids, Community.all, :id, :name) do |b| %><br>
+                            <span>
+                                <%= b.check_box %>
+                                <%= b.label %>
+                            </span>
+                    <%end%><br>
+
+    <%= f.submit "Join Community", :class => "btn-primary btn-sm" %>
+    
+<% end %>
+

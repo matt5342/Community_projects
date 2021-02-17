@@ -1,14 +1,20 @@
-<h1> Welcome! </h1>
 
-<div> This is a space where users can help the community by creating and joining projects!</div>
+<% if current_user %>
+    <% heading = "Welcome, #{current_user.user_name}!" %>
+<% else %>
+    <%heading = "Welcome!" %>
+
+<% end %>
+<h1> <%= heading %> </h1>
+
+<div> This is a space where users can help the community by creating and joining projects!</div><br>
 
 <div> We're glad to see you! </div>
 <br>
+<%= render 'communities/errors' %>
 <% if current_user %>
-    <%= current_user.user_name %>
-    <%= link_to "Log Out", new_session_path("current"), method: "delete" %>
+    <%= link_to "Log Out", logout_path, method: "delete", :class => "btn-primary btn-sm" %>
 <% else %>
-    <%= link_to 'Sign up', new_user_path, :class => "btn-primary btn-sm" %>
-    <%= link_to 'Log in', new_session_path, :class => "btn-primary btn-sm" %>
+    <%= link_to 'Sign up', signup_path, :class => "btn-primary btn-sm" %>
+    <%= link_to 'Log in', login_path, :class => "btn-primary btn-sm" %>
 <% end %>
-

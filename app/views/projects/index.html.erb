@@ -7,11 +7,13 @@
 
    <%= select_tag "status", options_for_select([[" -- select --" , "0"]] + [["All" , "0"]] + @status)%>
   <%= submit_tag 'Filter', :class => "btn-primary btn-sm" %>
-<% end %><br>
+<% end %>
 
-
+<%= @message %><br>
 <% @projects.each do |p| %>
    <li> <%= link_to p.name, p %></li>
+   <p style="margin-left: 20px"> -<%= p.description %> </p>
 <% end %>
 </ul>
 <%= link_to "Create a New Project", new_project_path, :class => "btn-primary btn-sm" %>
+<%= link_to "Back a Project", new_user_project_path, :class => "btn-primary btn-sm" %>
