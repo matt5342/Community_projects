@@ -1,12 +1,13 @@
-<h2>  Edit Community </h2>
+<h2>  Edit Projects in this Community </h2>
 
 <%= render 'communities/errors' %>
 
 <%= form_with model: @community do |form| %>
-    <%= form.label :name %>
-    <br>
-    <%= form.text_field :name %><br>
-    Projects: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name %><br>
-    <br> <br>
-    <%= form.submit %>
+    Projects: <%= form.collection_check_boxes(:project_ids, Project.all, :id, :name) do |b| %><br>
+                            <span>
+                                <%= b.check_box + "  " + b.text%>
+                            </span>
+                    <%end%><br>
+    <%= form.submit "Edit Community", :class => "btn-primary btn-sm" %>
 <% end %>
+

@@ -9,7 +9,7 @@ $black: black;
         background: $black;
 }
 body {
-        background: $black;
+        background: rgb(34, 33, 33);
         color: $white;
         font-family: 'Merriweather', sans-serif;
 }
@@ -22,7 +22,7 @@ p {
         color: $white;
 }
 a:visited {
-        color: $white;
+        // color: $white;
 }
 .jumbotron {
         background: #0048CD;

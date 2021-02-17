@@ -2,41 +2,47 @@
 
 <dl>
     <ul>
-    <dt><h3>My Projects</h3></dt>
-    <dd><% @user.projects.each do |project| %>
-        <li>
-            <%=link_to project.name, project %>
-        </li>
-    <% end %>
-    </dd>
+    <dt><h3>My Projects</h3></dt> 
+        <% if @user.projects.size == 0 %>
+        <li style="margin-left: 40px"><%= "No projects yet." %></li>
+    <% else %>
+        <% @user.projects.each do |project| %>
+            <li style="margin-left: 40px"><%= link_to project.name, project %></li>
+        <% end %>
+    <% end %> 
     </ul>
 </dl>
 
 <dl>
     <ul>
     <dt><h3>My Communities</h3></dt>
-    <dd><% @user.communities.each do |comm| %>
-        <li>
-            <%=link_to comm.name, comm %>
-        </li>
+    <% if @user.communities.size == 0 %>
+        <li style="margin-left: 40px"><%= "No communities yet." %></li>
+    <% else %>
+        <% @user.communities.each do |community| %>
+            <li style="margin-left: 40px"><%= link_to community.name, community %></li>
         <% end %>
-    </dd>
+    <% end %> 
+    
     </ul>
 </dl>
 
 <dl>
     <ul>
     <dt><h3>Backed Projects</h3></dt>
-    <dd><% @user.backed_projects.each do |project| %>
-        <li>
-            <%=link_to project.name, project %>
-        </li>
+    <% if @user.backed_projects.size == 0 %>
+        <li style="margin-left: 40px"><%= "No backed projects yet." %></li>
+    <% else %>
+        <% @user.backed_projects.each do |backed_project| %>
+            <li style="margin-left: 40px"><%= link_to backed_project.name, backed_project %></li>
         <% end %>
-    </dd>
+    <% end %> 
+    
     </ul>
 </dl>
 
 <%= link_to "Back a Project", new_user_project_path, :class => "btn-primary btn-sm" %>
+<%= link_to "Edit my Profile", edit_user_path, :class => "btn-primary btn-sm" %>
 <%= link_to "Back to Index", users_path, :class => "btn-primary btn-sm" %>
 <%= link_to "Create a Project", new_project_path, :class => "btn-primary btn-sm" %>
-<%= link_to "Create a Comminuty", new_community_path, :class => "btn-primary btn-sm" %>
+<%= link_to "Create a Community", new_community_path, :class => "btn-primary btn-sm" %>

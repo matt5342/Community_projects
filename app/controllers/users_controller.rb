@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     end
 
     def show 
-        flash[:user] = @user.id
+        # flash[:user] = @user.id
     end
     def new
         @user = User.new
@@ -23,15 +23,35 @@ class UsersController < ApplicationController
         end
     end
 
-    def back_project
-        # byebug
+    def edit 
+        @user = current_user
+    end
+    def update
+        @user = current_user
+        @user.update(user_params)
+        UserCommunity.where("user_id=?", @user.id).destroy_all
 
+        community_params["community_ids"].each do |id|
+            unless id == ""
+                UserCommunity.create(user_id: current_user.id, community_id: id)
+            end
+        end
+        redirect_to user_path(current_user)
+    end
+    def back_project
         UserProject.create(user_id: current_user.id, project_id: params[:id])
+        redirect_to user_path(current_user)
+    end
+    def join_community
+        UserCommunity.create(user_id: current_user.id, community_id: params[:id])
         redirect_to user_path(current_user)
     end
 
     private
 
+    def community_params
+        params.require(:user).permit(:community_ids => [])
+    end
     def user_params
         params.require(:user).permit(:user_name, :password, :password_confirmation)
     end

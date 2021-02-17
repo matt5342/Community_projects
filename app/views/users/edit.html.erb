@@ -1,0 +1,26 @@
+<h1>Edit Profile</h1>
+
+<%= render 'communities/errors' %>
+
+   
+
+<%= form_with model: @user do |f| %>
+
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name %><br>
+        <%= f.label :new_password %>
+        <%= f.password_field :password %><br>
+        <%= f.label :confirm_new_password %>
+        <%= f.password_field :password_confirmation %>
+
+    <h3>Join a new Community!</h3> 
+    Communities: <%= f.collection_check_boxes(:community_ids, Community.all, :id, :name) do |b| %><br>
+                            <span>
+                                <%= b.check_box %>
+                                <%= b.label %>
+                            </span>
+                    <%end%><br>
+
+    <%= f.submit "Update Profile", :class => "btn-primary btn-sm" %>
+    
+<% end %>

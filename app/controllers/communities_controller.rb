@@ -10,24 +10,26 @@ class CommunitiesController < ApplicationController
         render :edit
     end
     def update
+        # byebug
         ProjectCommunity.where("community_id=?", @community.id).destroy_all
-        @community.update(community_params)
-        make_community(@community)
-        project_params["project_id"].each do |id|
+        project_params["project_ids"].each do |id|
             unless id == ""
                 ProjectCommunity.create(project_id: id, community_id: @community.id)
             end
         end
-        
+        redirect_to @community
     end
 
     def new
+        flash[:status] = nil
+        flash[:user] = nil
         @community = Community.new
     end
 
     def create
         @community = Community.new(community_params)
         make_community(@community)
+        UserCommunity.create(user_id: current_user.id, community_id: @community.id)
     end
 
 private
@@ -49,7 +51,7 @@ private
         params.require(:community).permit(:name)
     end
     def project_params
-        params.require(:project).permit(:project_id => [])
+        params.require(:community).permit(:project_ids => [])
     end
 
 end

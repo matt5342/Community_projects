@@ -3,7 +3,7 @@
 
 <%= form_for @user_project do |f| %>
     <%= f.hidden_field :user_id %>
-    Projects: <%= collection_check_boxes :project, :project_id, Project.all, :id, :name, check: Project.all.map(&:id) do |b| %><br>
+    Projects: <%= collection_check_boxes :project, :project_id, Project.all.select{|p| p.status != "Completed"}, :id, :name, check: Project.all.map(&:id) do |b| %><br>
                             <span>
                                 <%= b.check_box %>
                                 <%= b.label %>
