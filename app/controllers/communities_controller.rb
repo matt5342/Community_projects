@@ -1,5 +1,7 @@
 class CommunitiesController < ApplicationController
     before_action :get_id, only: [:show, :edit, :update]
+    before_action :authorize, only: [:index]
+
     def index
         @communities = Community.all
     end
@@ -22,7 +24,7 @@ class CommunitiesController < ApplicationController
 
     def new
         flash[:status] = nil
-        flash[:user] = nil
+        # flash[:user] = nil
         @community = Community.new
     end
 

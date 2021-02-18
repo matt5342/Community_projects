@@ -12,6 +12,10 @@ body {
         background: rgb(34, 33, 33);
         color: $white;
         font-family: 'Merriweather', sans-serif;
+        // margin: 10px;
+}
+#content[role="main"]{
+        margin: 20px;
 }
 h1,
 h2 {

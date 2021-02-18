@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     end
     def show
         flash[:status] = nil
-        flash[:user] = nil
+        # flash[:user] = nil
     end
     def edit
         flash[:status] = nil
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
 
     def new
         flash[:status] = nil
-        flash[:user] = nil
+        # flash[:user] = nil
         @project = Project.new(user_id: flash[:user])
     end
     def create

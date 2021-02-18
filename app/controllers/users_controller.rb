@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     end
 
     def edit 
+        flash[:status] = nil
         @user = current_user
     end
     def update
