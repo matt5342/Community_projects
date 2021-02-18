@@ -5,7 +5,6 @@ class UserProject < ApplicationRecord
   after_save :increment_progress
 
   def increment_progress
-    byebug
     if self.project.users.count > 0 && self.project.users.count < self.project.goal
       self.project.status = "In Progress"  
     else self.project.users.count >= self.project.goal

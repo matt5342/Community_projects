@@ -1,10 +1,8 @@
 class UserProjectsController < ApplicationController
+    before_action :clear_flash, only: [:new]
 
-    def index
-        @user_projects = UserProject.all
-    end
+
     def new
-        # byebug
         @user_project = UserProject.new(user_id: current_user.id)
     end
 
@@ -19,9 +17,6 @@ class UserProjectsController < ApplicationController
 
     private
 
-    # def user_params
-    #     params.require(:user_project).permit(:user_id)
-    # end
     def back_project_params
         params.require(:project).permit(:project_id => [])
     end
