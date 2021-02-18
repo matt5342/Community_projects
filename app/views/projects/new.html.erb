@@ -6,11 +6,11 @@
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
     Communities: <%= f.collection_check_boxes(:community_ids, Community.all, :id, :name) do |b| %><br>
-                            <span>
-                                <%= b.check_box %>
-                                <%= b.label %>
-                            </span>
-                    <%end%><br>
+                            <label class="container">
+                            <%= b.check_box %><span class="checkmark"></span>
+                            <label class="check_label"><%= b.label %></label></label>
+                    <%end%>
+                    <br>
     <%= f.hidden_field :status, :value => "Started" %>
     <br>
     <%= render 'communities/errors' %>
