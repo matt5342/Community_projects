@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   def new
     flash[:notice] = nil
   end

@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery
-
-
+    
     private
 
     def current_user
@@ -11,5 +10,8 @@ class ApplicationController < ActionController::Base
 
     def authorize
         redirect_to login_url, alert: "Not authorized" if current_user.nil?
+    end
+    def clear_flash
+        flash[:status] = nil
     end
 end

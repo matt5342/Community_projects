@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
     before_action :get_user, only: [:show]
-    # after_action :new_back_project, only: [:back_project]
+    before_action :clear_flash, only: [:index, :show, :edit, :new]
+
 
     def index
         @users = User.all
     end
 
     def show 
-        # flash[:user] = @user.id
     end
     def new
         @user = User.new
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     end
 
     def edit 
-        flash[:status] = nil
         @user = current_user
     end
     def update

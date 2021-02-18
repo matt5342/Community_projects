@@ -5,7 +5,8 @@
 <%= form_with model: @community do |form| %>
     Projects: <%= form.collection_check_boxes(:project_ids, Project.all, :id, :name) do |b| %><br>
                             <span>
-                                <%= b.check_box + "  " + b.text%>
+                                <%= b.check_box %>
+                                <%= b.label %>
                             </span>
                     <%end%><br>
     <%= form.submit "Edit Community", :class => "btn-primary btn-sm" %>

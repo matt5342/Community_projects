@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
     before_action :get_project, only: [:show, :destroy, :edit, :update]
     before_action :authorize, only: [:index]
+    before_action :clear_flash, only: [:show, :edit, :new]
     def index
-        # byebug
         @status = ["Started", "In Progress", "Completed"]
         if @status.include?(params[:status])
             flash[:status] = params[:status]
@@ -17,11 +17,8 @@ class ProjectsController < ApplicationController
 
     end
     def show
-        flash[:status] = nil
-        # flash[:user] = nil
     end
     def edit
-        flash[:status] = nil
         if current_user.id != @project.user_id
             redirect_to project_path(@project), alert: "Only the creator can edit this project" 
         else
@@ -39,8 +36,6 @@ class ProjectsController < ApplicationController
     end
 
     def new
-        flash[:status] = nil
-        # flash[:user] = nil
         @project = Project.new(user_id: flash[:user])
     end
     def create
@@ -57,14 +52,10 @@ class ProjectsController < ApplicationController
         end
     end
 
-
-
-
-
     private
 
     def make_project(project)
-        community_params["community_id"].each do |id|
+        community_params["community_ids"].each do |id|
             unless id == ""
                 ProjectCommunity.create(community_id: id, project_id: @project.id)
             end
@@ -86,7 +77,7 @@ class ProjectsController < ApplicationController
         )
     end
     def community_params
-        params.require(:community).permit(:community_id => [])
+        params.require(:project).permit(:community_ids => [])
     end
 
 end

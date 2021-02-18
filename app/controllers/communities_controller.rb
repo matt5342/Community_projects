@@ -1,6 +1,7 @@
 class CommunitiesController < ApplicationController
     before_action :get_id, only: [:show, :edit, :update]
     before_action :authorize, only: [:index]
+    before_action :clear_flash, only: [:show, :edit, :new]
 
     def index
         @communities = Community.all
@@ -12,7 +13,6 @@ class CommunitiesController < ApplicationController
         render :edit
     end
     def update
-        # byebug
         ProjectCommunity.where("community_id=?", @community.id).destroy_all
         project_params["project_ids"].each do |id|
             unless id == ""
@@ -23,8 +23,6 @@ class CommunitiesController < ApplicationController
     end
 
     def new
-        flash[:status] = nil
-        # flash[:user] = nil
         @community = Community.new
     end
 
@@ -32,6 +30,11 @@ class CommunitiesController < ApplicationController
         @community = Community.new(community_params)
         make_community(@community)
         UserCommunity.create(user_id: current_user.id, community_id: @community.id)
+        project_params["project_ids"].each do |id|
+            unless id == ""
+                ProjectCommunity.create(project_id: id, community_id: @community.id)
+            end
+        end
     end
 
 private
