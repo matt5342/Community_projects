@@ -1,0 +1,19 @@
+<%= render 'communities/errors' %>
+
+   
+
+<%= form_with model: @user, url: back_project_path do |f| %>
+    
+    
+    <h3>Back a Project!</h3> 
+    Projects: <%= f.collection_check_boxes(:backed_project_ids, Project.all.select{|p| p.status != "Completed"}, :id, :name) do |b| %><br>
+                            <label class="container">
+                                <%= b.check_box %><span class="checkmark"></span>
+                                <label class="check_label"><%= b.label %></label></label>
+                            
+                    <%end%>
+    <br>
+
+    <%= f.submit "Update Projects", :class => "btn-primary btn-sm" %>
+
+<% end %>
