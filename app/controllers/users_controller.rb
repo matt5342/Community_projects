@@ -57,6 +57,12 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user)
     end
 
+    def leave_community
+        UserCommunity.where(["user_id = ? and community_id = ?", current_user.id, params[:id]]).first.destroy
+        flash[:note] = "#{Community.find(params[:id]).name} has been removed from your communities"
+        redirect_to user_path(current_user)
+    end
+
     private
 
     def community_params

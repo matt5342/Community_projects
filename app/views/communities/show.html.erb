@@ -23,4 +23,8 @@
 
 <%= link_to "Create a New Project", new_project_path, :class => "btn-primary btn-sm" %>
 <%= link_to "Edit Community", edit_community_path(@community), :class => "btn-primary btn-sm" %>
-    <%= link_to "Join this Community", join_this_community_path(@community.id), :class => "btn-primary btn-sm" %>
+<% if current_user.communities.include?(@community) %>
+<%= link_to "Leave Community", leave_this_community_path(@community), :class => "btn-primary btn-sm" %>
+<% else %>
+<%= link_to "Join this Community", join_this_community_path(@community.id), :class => "btn-primary btn-sm" %>
+<% end %>

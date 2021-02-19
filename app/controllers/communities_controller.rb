@@ -10,7 +10,7 @@ class CommunitiesController < ApplicationController
     def show
     end
     def edit
-        render :edit
+        #render :edit
     end
     def update
         ProjectCommunity.where("community_id=?", @community.id).destroy_all

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'back/:id', to: 'users#back_project', as: 'back_this_project'
   get 'unback/:id', to: 'users#unback_project', as: 'unback_this_project'
   get 'join/:id', to: 'users#join_community', as: 'join_this_community'
+  get 'leave/:id', to: 'users#leave_community', as: 'leave_this_community'
   resources :projects
   resources :communities
   resources :users
