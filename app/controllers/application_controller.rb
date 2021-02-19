@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
         render_404
     end
     def render_404
-        render file: '/Users/mattsewell/Development/code/phase_2/rails/ph_2_project/Community_projects/public/404.html', status: :not_found
+        render file: "/#{Rails.root}/public/404.html", status: :not_found
     end  
     private      
     def current_user
