@@ -52,12 +52,21 @@ class UsersController < ApplicationController
     end
     def back_these
         UserProject.where("user_id=?", current_user.id).destroy_all
-
         back_params["backed_project_ids"].each do |id|
             unless id == ""
                 UserProject.create(user_id: current_user.id, project_id: id)
             end
         end
+        redirect_to user_path(current_user)
+    end
+    def leave_community
+        UserCommunity.where(["user_id = ? and community_id = ?", current_user.id, params[:id]]).first.destroy
+        flash[:note] = "#{Community.find(params[:id]).name} has been removed from your communities"
+        redirect_to user_path(current_user)
+    end
+    def unback_project
+        UserProject.where(["user_id = ? and project_id = ?", current_user.id,  params[:id]]).first.destroy
+        flash[:note] = "#{Project.find(params[:id]).name} has been removed from your list!"
         redirect_to user_path(current_user)
     end
 

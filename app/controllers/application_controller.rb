@@ -1,8 +1,18 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery
-    
-    private
-    
+    rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+  
+
+
+    def not_found
+        raise ActionController::RoutingError.new('Not Found')
+    rescue
+        render_404
+    end
+    def render_404
+        render file: '/Users/mattsewell/Development/code/phase_2/rails/ph_2_project/Community_projects/public/404.html', status: :not_found
+    end  
+    private      
     def current_user
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end

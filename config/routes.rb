@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :communities
   resources :users
   resources :sessions
+  match ":url", to: "application#not_found", :constraints => { :url => /.*/ }, via: [ :get, :post, :patch, :delete ]
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
