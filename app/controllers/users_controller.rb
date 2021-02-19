@@ -62,6 +62,7 @@ class UsersController < ApplicationController
         flash[:note] = "#{Community.find(params[:id]).name} has been removed from your communities"
         redirect_to user_path(current_user)
     end
+    
 
     private
 
