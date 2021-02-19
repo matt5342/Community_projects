@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
   get 'back/:id', to: 'users#back_project', as: 'back_this_project'
+  get 'unback/:id', to: 'users#unback_project', as: 'unback_this_project'
   get 'join/:id', to: 'users#join_community', as: 'join_this_community'
   resources :projects
   resources :communities

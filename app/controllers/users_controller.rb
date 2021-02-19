@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
     before_action :get_user, only: [:show]
-    before_action :clear_flash, only: [:index, :show, :edit, :new]
-
+    before_action :clear_flash, only: [:index, :edit, :new]
 
     def index
         @users = User.all
@@ -9,9 +8,11 @@ class UsersController < ApplicationController
 
     def show 
     end
+
     def new
         @user = User.new
     end
+
     def create
         @user = User.new(user_params)
         if @user.save
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
     def edit 
         @user = current_user
     end
+
     def update
         @user = current_user
         @user.update(user_params)
@@ -38,10 +40,18 @@ class UsersController < ApplicationController
         end
         redirect_to user_path(current_user)
     end
+
     def back_project
         UserProject.create(user_id: current_user.id, project_id: params[:id])
         redirect_to user_path(current_user)
     end
+
+    def unback_project
+        UserProject.where(["user_id = ? and project_id = ?", current_user.id,  params[:id]]).first.destroy
+        flash[:note] = "#{Project.find(params[:id]).name} has been removed from your list!"
+        redirect_to user_path(current_user)
+    end
+
     def join_community
         UserCommunity.create(user_id: current_user.id, community_id: params[:id])
         redirect_to user_path(current_user)

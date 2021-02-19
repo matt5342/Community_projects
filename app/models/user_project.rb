@@ -3,6 +3,7 @@ class UserProject < ApplicationRecord
   belongs_to :project
   validates :project_id, uniqueness: {scope: :user_id}
   after_save :increment_progress
+  after_destroy :increment_progress
 
   def increment_progress
     if self.project.users.count > 0 && self.project.users.count < self.project.goal
