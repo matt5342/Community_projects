@@ -10,6 +10,11 @@ class CommunitiesController < ApplicationController
     def show
     end
     def edit
+        @community = Community.find(params[:id])
+        if !@community.users.include?current_user
+            flash[:note] = "Only members can edit this community"
+            redirect_to @community
+        end
         #render :edit
     end
     def update

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :get_user, only: [:show]
-    before_action :clear_flash, only: [:index, :edit, :new]
+    before_action :clear_flash, only: [:index, :new]
 
     def index
         @users = User.all
