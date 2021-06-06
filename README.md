@@ -1,5 +1,9 @@
 # README
 
+Community Projects is an app built for members of the community to come together, create, find, and support projects that benefit the community, especially when physical contribution is a challenge.
+Users can create an account and view existing communities or create one if they'd like, they can also find projects within a community and/or create projects within a community/multiple communities.
+
+
 1) Project
 	X-show
 	X-index
